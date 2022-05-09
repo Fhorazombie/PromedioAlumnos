@@ -1,12 +1,15 @@
 ﻿using System;
 
+/* https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/public */
+
 public class calificaciones
 {
 	public struct alumno
 	{
 		public string id;
 		public string nombre;
-		public int edad;
+		/* https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types */
+		public uint edad;
 		public float caliMate;
 		public float caliEspa;
 		public float caliQuim;
@@ -17,7 +20,8 @@ public class calificaciones
 	public static void Main()
 	{
 
-		/* https://stackoverflow.com/questions/1064901/random-number-between-2-double-numbers */
+		/* https://stackoverflow.com/questions/1064901/random-number-between-2-double-numbers */            
+		/* https://docs.microsoft.com/en-us/dotnet/api/system.random?view=net-6.0  https://docs.microsoft.com/en-us/dotnet/api/system.random.nextdouble?view=net-6.0 */
 		double GetRandomNumber(float minimum, float maximum)
 		{
 			Random random = new Random();
@@ -36,40 +40,23 @@ public class calificaciones
 
 		alumno[] alumnos = new alumno[10];
 
-		alumnos[0].id = "alumno1";
+		/* https://generadordenombres.online */
 		alumnos[0].nombre = "Pedro Mendez";
-
-		alumnos[1].id = "alumno2";
 		alumnos[1].nombre = "Rodolfo Holgado";
-
-		alumnos[2].id = "alumno3";
 		alumnos[2].nombre = "Alejandra Mestre";
-
-		alumnos[3].id = "alumno4";
 		alumnos[3].nombre = "Casimiro Betancor";
-
-		alumnos[4].id = "alumno5";
 		alumnos[4].nombre = "Jacobo Morilla";
-
-		alumnos[5].id = "alumno6";
 		alumnos[5].nombre = "Pedro Mendez";
-
-		alumnos[6].id = "alumno7";
 		alumnos[6].nombre = "Elisabeth Maya";
-
-		alumnos[7].id = "alumno8";
 		alumnos[7].nombre = "Melchor Amoros";
-
-		alumnos[8].id = "alumno9";
 		alumnos[8].nombre = "Uxia Morales";
-
-		alumnos[9].id = "alumno10";
 		alumnos[9].nombre = "Álvaro Tome";
 
 
 		for (int i = 0; i < alumnos.Length; i++)
 		{
-			alumnos[i].edad = (int)(GetRandomNumber(18, 25));
+			alumnos[i].id = "alumno"+i;
+			alumnos[i].edad = (uint)(GetRandomNumber(18, 25));
 			alumnos[i].caliMate = (float)(Math.Round(GetRandomNumber(6, 10), 1));
 			alumnos[i].caliEspa = (float)(Math.Round(GetRandomNumber(6, 10), 1));
 			alumnos[i].caliQuim = (float)(Math.Round(GetRandomNumber(6, 10), 1));
@@ -94,12 +81,14 @@ public class calificaciones
 		Console.WriteLine("----------------------------------------------------------------------------------");
 		Console.WriteLine("| Id       | Nombre              | Edad | Mat. | Esp. | Quím. | Físi. | Promedio |");
 		Console.WriteLine("----------------------------------------------------------------------------------");
+
+
 		for (int i = 0; i < alumnos.Length; i++)
 		{
 			float promedio = (alumnos[i].caliMate + alumnos[i].caliEspa + alumnos[i].caliQuim + alumnos[i].caliFisi)/4;
 			alumnos[i].promedio = (float)(Math.Round(promedio, 1));
 
-				Console.WriteLine("----------------------------------------------------------------------------------");
+			Console.WriteLine("----------------------------------------------------------------------------------");
 			Console.WriteLine("| {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} |",
 			formatText(alumnos[i].id, 8), 
 			formatText(alumnos[i].nombre,19),
@@ -113,6 +102,8 @@ public class calificaciones
 			Console.WriteLine("----------------------------------------------------------------------------------");
 
 		}
+
+
         unsafe
 		{
 			float*[] punterocalificaciones = new float*[10];
@@ -131,6 +122,5 @@ public class calificaciones
 			}
 		}
 
-		/*https://generadordenombres.online*/
 	}
 }
